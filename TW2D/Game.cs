@@ -16,8 +16,8 @@ namespace TW2D
         public Tank CurrentTank { get; private set; }
         public Game()
         {
-            Tank1 = new Tank(new Point(50, 100), 5, Brushes.Blue, "Tank1");
-            Tank2 = new Tank(new Point(850, 100), 5, Brushes.Red, "Tank2");
+            Tank1 = new Tank(new Point(50, 100), 5, 100, Brushes.Blue, "Tank1");
+            Tank2 = new Tank(new Point(850, 100), 5,100, Brushes.Red, "Tank2");
             CurrentTank = Tank1;
         }
         public void SetCurrentTank()
@@ -44,10 +44,12 @@ namespace TW2D
         public int HitPoints { get; set; }
         public EllipseGeometry Body { get; set; }
         public Path Model { get; set; }
-        public Tank(Point location, int hp, Brush brushes, string name)
+        public int Fuel { get; set; }
+        public Tank(Point location, int hp,int fuel, Brush brushes, string name)
         {
             Location = location;
             HitPoints = hp;
+            Fuel = fuel;
             Body = new EllipseGeometry() { Center = location, RadiusX = 20, RadiusY = 20};
             var path = new Path();
             path.Data = Body;
@@ -65,7 +67,7 @@ namespace TW2D
         public EllipseGeometry HitBox { get; set; }
         public Bullet(Point location)
         {
-            HitBox = new EllipseGeometry() { Center = location, RadiusX = 22, RadiusY = 22 };
+            HitBox = new EllipseGeometry() { Center = location, RadiusX = 30, RadiusY = 30 };
         }
     }
     public class Trajectory

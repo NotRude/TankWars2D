@@ -62,6 +62,8 @@ namespace TW2D
         {            
             PathGeometry pathGeometry = new PathGeometry(new List<PathFigure> {TrajectoryBullet.Figure});
             var list = GetBezierPoints(pathGeometry, (int)(Math.Abs(TrajectoryBullet.Figure.StartPoint.X - TrajectoryBullet.Bezier.Point3.X)));
+            Game.CurrentTank.Fuel = 100;
+            FuelTB.Text = "Топливо:" + 100;
             Game.SetCurrentTank();
             foreach (var point in list)
             {
@@ -112,6 +114,11 @@ namespace TW2D
         }        
         public void MoveTank(Tank tank, int speed)
         {
+            if(tank.Fuel <= 0)
+            {
+                return;
+            }
+            TrajectoryBullet.ChangeTrajectory(tank, speed, 0);
             var point = tank.Body.Center;
             if (point.Y == 450)
             {
@@ -122,7 +129,7 @@ namespace TW2D
             var result = VisualTreeHelper.HitTest(BattleField, new Point(point.X, point.Y + 1));
             if (result == null)
             {
-                point = FindBattleFieldZ(point.X);
+                point = FindBattleFieldY(point.X);
             }
             result = VisualTreeHelper.HitTest(BattleField, point);
             if(result != null)
@@ -134,6 +141,8 @@ namespace TW2D
                 }
             }
             tank.Body.Center = new Point(point.X + speed, point.Y);
+            tank.Fuel -= 1;
+            FuelTB.Text = "Топливо:" + tank.Fuel;
         }
         public void GetHit(Point point)
         {
@@ -208,13 +217,11 @@ namespace TW2D
             }
             if (e.Key == Key.D)
             {
-                TrajectoryBullet.ChangeTrajectory(Game.CurrentTank,2,0);
                 MoveTank(Game.CurrentTank, 2);
 
             }
             if (e.Key == Key.A)
             {
-                TrajectoryBullet.ChangeTrajectory(Game.CurrentTank, -2,0);
                 MoveTank(Game.CurrentTank, -2);
             }
             if (e.Key == Key.E)
@@ -238,7 +245,7 @@ namespace TW2D
                 Shoot();
             }
         }
-        public Point FindBattleFieldZ(double x)
+        public Point FindBattleFieldY(double x)
         {
             var point = new Point(x, 0);
             HitTestResult result = null;

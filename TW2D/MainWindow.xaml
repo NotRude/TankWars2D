@@ -10,6 +10,8 @@
         <Canvas x:Name="Field" Height="450" Width="900"/>
         <TextBlock Width="50" Height="50" Name="TankHP1TB" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20"/>
         <TextBlock Width="50" Height="50" Name="TankHP2TB" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="20"/>
+        <TextBlock Width="200" Height="50" Name="FuelTB" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"/>
         <TextBlock Width="800" Height="100" Name="GameOverTB" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" TextAlignment="Center">Нажмите Enter</TextBlock>
+        
     </Grid>
 </Window>
