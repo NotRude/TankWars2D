@@ -61,7 +61,7 @@ namespace TW2D
         public void Shoot()
         {            
             PathGeometry pathGeometry = new PathGeometry(new List<PathFigure> {TrajectoryBullet.Figure});
-            var list = GetBezierPoints(pathGeometry, (int)(Math.Abs(TrajectoryBullet.Figure.StartPoint.X - TrajectoryBullet.Bezier.Point3.X)));
+            var list = GetBezierPoints(TrajectoryBullet.PathGeom, (int)(Math.Abs(TrajectoryBullet.Figure.StartPoint.X - TrajectoryBullet.Bezier.Point3.X)));
             Game.CurrentTank.Fuel = 100;
             FuelTB.Text = "Топливо:" + 100;
             Game.SetCurrentTank();

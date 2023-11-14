@@ -73,8 +73,8 @@ namespace TW2D
     public class Trajectory
     {
         public PathFigure Figure = new PathFigure();       
-        public BezierSegment Bezier = new BezierSegment();                
-        PathGeometry PathGeom = new PathGeometry();       
+        public BezierSegment Bezier = new BezierSegment();
+        public PathGeometry PathGeom = new PathGeometry();       
         public Path Model = new Path();
 
         public Trajectory(Tank tank)
